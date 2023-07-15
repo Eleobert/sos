@@ -13,7 +13,7 @@ _start:
     call park_harts
     la   a0, msg
     call uart_puts
-    wfi
+    call power_off
 
 
 uart_putc:
@@ -39,3 +39,9 @@ park_harts:
     ret
 park:
     wfi
+
+power_off:
+    li   a5, 1048576
+    li   a4, 20480
+    addi a4, a4,1365
+    sw   a4, 0(a5)
