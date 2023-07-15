@@ -11,6 +11,7 @@ msg: .string "Booting SOS.\n"
 
 _start:
     call park_harts
+    la   sp, stack_top 
     la   a0, msg
     call uart_puts
     call power_off

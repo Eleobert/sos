@@ -1,5 +1,3 @@
-OUTPUT_ARCH( "riscv" )
-
 ENTRY( _start )
 
 MEMORY
@@ -38,6 +36,8 @@ SECTIONS
   .bss :{
     PROVIDE(_bss_start = .);
     *(.sbss .sbss.*) *(.bss .bss.*)
+    . += 4096;
+		PROVIDE(stack_top = .);
     PROVIDE(_bss_end = .);
   } >ram AT>ram :bss
 
