@@ -12,9 +12,7 @@ msg: .string "Booting SOS."
 _start:
     call park_harts
     la   sp, stack_top 
-    la   a0, msg
-    call uart_putsln
-    call power_off
+    call kmain
 
 park_harts:
     csrr t0, mhartid
