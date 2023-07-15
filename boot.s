@@ -10,7 +10,8 @@ msg: .string "Booting SOS.\n"
 
 
 _start:
-    la a0, msg
+    call park_harts
+    la   a0, msg
     call uart_puts
     wfi
 
@@ -32,3 +33,9 @@ cont:
 break:
     ret
 
+park_harts:
+    csrr t0, mhartid
+    bnez t0, park
+    ret
+park:
+    wfi
