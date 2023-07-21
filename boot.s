@@ -1,9 +1,4 @@
-.equ UART_BASE, 0x10000000
-
 .option norvc
-
-.section .data
-msg: .string "Booting SOS."
 
 .section .text.init
 .global _start
@@ -20,9 +15,3 @@ park_harts:
     ret
 park:
     wfi
-
-power_off:
-    li   a5, 1048576
-    li   a4, 20480
-    addi a4, a4,1365
-    sw   a4, 0(a5)
